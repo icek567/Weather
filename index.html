@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1>
-      <div class="container">
+      <div class="container1">
       <div class="card text-center">
         <div class="card-header text-white bg-dark">
           Weather Dashboard
@@ -20,16 +20,24 @@
        </div>
     </h1>
 
-    <div class="search">
-        <h2>
-            Search for Cities
-            <div class="search-container">
-                    <!-- <form action="/action_page.php"></form> -->
-                      <input type="text" placeholder="City.." name="search">
-                      <button type="submit"><i class="fa fa-search"></i></button>
-                    <!-- </form> -->
-                  </div>
-        </h2>
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-12">
+          <h3 class="text-center text-dark">Enter City</h3>
+        </div>
+
+        <div class="row form-group form-inline"id="cityDiv">
+          <input type="text" name="city" class="input" placeholder="Enter City">
+          <button id="submitCity" class="btn btn-dark">Search City</button>
+
+        </div>
+
+      </div>
+
+      
+      <!-- <div id="showWeather"></div> -->
+
+
     </div>
     <script src="assets/java.js"></script>
 </body>
