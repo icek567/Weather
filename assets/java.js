@@ -50,10 +50,10 @@ for (i of searchHistoryArray) {
 
 
            var city = $(".input").val();
-           var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",=us&mode=xml&appid=7ba67ac190f85fdba2e2dc6b9d32e93c"
+           var FiveDayweatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",=us&mode=xml&appid=7ba67ac190f85fdba2e2dc6b9d32e93c"
 
            $.ajax({
-               url:weatherUrl,
+               url:FiveDayweatherUrl,
                method: "GET",
            }).then(function(response){
                console.log(weatherUrl);
@@ -73,6 +73,6 @@ for (i of searchHistoryArray) {
            })
 
 
-        });
+        }); 
     });
 
