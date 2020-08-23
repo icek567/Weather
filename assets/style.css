@@ -1,15 +1,12 @@
+.container{
+    margin-top: auto;
+}
 
-
- .items{
+  #dayCast{
     color: rgb(2, 0, 138);
     width: 500px;
-}
-
-
-body{
-    /* background-image: url("https://www.carbonbrief.org/wp-content/uploads/2017/11/storm-uk-1-1550x804.jpg");
-    background-size: cover;  */
-
-}
-
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 25px;
+} 
 

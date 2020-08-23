@@ -52,7 +52,7 @@ $("#submitCity").on("click", function () {
             localStorage.setItem("storedHTML", storedHTML)
         })
 
-        var dayForecast = $("<div>");
+        var dayForecast = $("<div class='card shadow-lg p-3 mb-5 bg-white rounded' id=\"dayCast\" >");
 
         dayForecast.append(city1, wind1, humid1, temp1, UV1,);
         $("#items").html(dayForecast)
@@ -68,11 +68,11 @@ $("#submitCity").on("click", function () {
         // empty div once reloaded
         $("#forecast").empty();
         var results = response.list;
-        $("#forecast").html("<h3 class=\"mt-3\" id=\"fiveDay\">5-Day Forecast for: " + city + "</h3>").append();
+        $("#title").html("<h1 class=\"mt-3\">5-Day Forecast for " + city + "</h1>");
 
         for (var i = 0; i < results.length; i += 8) {
             // Creating a div
-            var fiveDayDiv = $("<div class='card shadow-lg text-white bg-dark mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem;'>");
+            var fiveDayDiv = $("<div id=\"fiveDay\" class='card shadow-lg text-white bg-dark mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem; margin-right: 5rem;'>");
             
             //Storing the responses date temp and humidity.......
             var date = results[i].dt_txt;

@@ -20,41 +20,38 @@
 </head>
 
 <body>
-  <h1>
-    <div class="container1">
-      <div class="card text-center">
-        <div class="card-header text-white bg-dark">
-          Weather Dashboard
-        </div>
-      </div>
-  </h1>
-
+  <div class="card">
+    <div class="card-header text-center bg-dark text-white">
+      <h1>Weather Dashboard</h1>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
-    <div class="col-auto-5" id="searchBar">
-      <div class="ex">
-        <input type="text" name="city" id="info" class="input" placeholder="Enter City">
-        <button id="submitCity" class="btn btn-dark">Search City</button>
+      <div class="col-sm-4 col-lg-4" id="searchBar">
+        <card>
+          <label for="city-input"><h3>Search for a city:</h3></label
+              ><br>
+          <input type="text" name="city" id="info" class="input" placeholder="Enter City">
+          <!-- Call AJAX on click button -->
+          <button id="submitCity" class="btn btn-primary">search</button>
+          <!-- Clear Query -->
+          <!-- <button id="clear-city-names" type="button" class="btn btn-primary btn-sm" title="Delete city list">
+            X
+          </button> -->
+        </card>
       </div>
-    </div>
-    </div>
-    <div class="row float-right">
-      <div class="col-auto-6">
+      <div class="col-sm-6 col-lg-6">
         <div id="items">
         </div>
       </div>
     </div>
     <br>
-    <br>
-    <div class="row float-left">
-      <div class="col-auto-7">
+      <div class="col-sm-12 col-lg-10">
         <div class="">
-          <!-- <h2 class="fiveDay">Five Day forecast</h2> -->
+          <div id="title"></div> 
           <div id="forecast" class="row"></div>
         </div>
       </div>
-    </div>
-
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
