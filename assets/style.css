@@ -5,8 +5,15 @@
   #dayCast{
     color: rgb(2, 0, 138);
     width: 500px;
-    border-width: 2px;
-    border-style: solid;
     margin-bottom: 25px;
+    margin-top: 10px ;
 } 
 
+.UV{
+    text-align: left;
+    width: 30%;
+}
+
+.time{
+    text-align: right;
+}
