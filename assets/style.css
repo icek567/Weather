@@ -1,10 +1,15 @@
-.container{
-    margin-top: auto;
+html{
+    height: 100%;
 }
+/* 
+body{
+    background-image: linear-gradient(  #C04848,#480048);
+} */
 
-  #dayCast{
+#dayCast{
     color: rgb(2, 0, 138);
     width: 500px;
+    /* background-image: linear-gradient(  #C04848,#480048); */
 } 
 
 .UV{
@@ -12,6 +17,6 @@
     width: 30%;
 }
 
-.time{
-    text-align: right;
+.title{
+    margin-bottom: 15px;
 }
