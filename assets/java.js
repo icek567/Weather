@@ -24,7 +24,7 @@ $("#submitCity").on("click", function () {
     var city = $(".input").val();
     var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=dc3b26ac9a18483a9000884d9ebbbe65"
     var setDate = moment().format('L');
-   var setTime= new Date().toLocaleTimeString();
+    var setTime= new Date().toLocaleTimeString();
 
 
     $.ajax({
@@ -37,9 +37,9 @@ $("#submitCity").on("click", function () {
         $("#current").empty();
         var Temperature = Math.round(response.main.temp);
 
-       var city1 = $("<h1>").text( response.name + "  " + setDate );
-       var time = $("<h3 class=\"time\">").text(setTime);
-       var wind1 = $("<p>").text("Windspeed: " + response.wind.speed + " MPH");
+        var city1 = $("<h1>").text( response.name + "  " + setDate );
+        var time = $("<h3 class=\"time\">").text(setTime);
+        var wind1 = $("<p>").text("Windspeed: " + response.wind.speed + " MPH");
         var humid1 = $("<p>").text("Humidity: " + response.main.humidity + "%");
         var temp1 =$("<p>").text("Temperature: " + Temperature +  "°F");
         var longitude = response.coord.lon
