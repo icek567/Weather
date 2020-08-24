@@ -36,15 +36,16 @@ $("#submitCity").on("click", function () {
         console.log(response)
         $("#current").empty();
         var Temperature = Math.round(response.main.temp);
-
+        var sameDay = response.weather[0].main;
+        
         var city1 = $("<h1>").text( response.name + "  " + setDate );
-        var time = $("<h3 class=\"time\">").text(setTime);
+        var time = $("<h3>").text(setTime);
         var wind1 = $("<p>").text("Windspeed: " + response.wind.speed + " MPH");
         var humid1 = $("<p>").text("Humidity: " + response.main.humidity + "%");
         var temp1 =$("<p>").text("Temperature: " + Temperature +  "°F");
         var longitude = response.coord.lon
         var latitude = response.coord.lat
-        var UV1 = $("<button class=\"UV btn btn-dark btn-sm\" disabled>");
+        var UV1 = $("<button class=\"UV btn btn-secondary btn-sm\" disabled>");
 
         var UVURL = "https://api.openweathermap.org/data/2.5/uvi?appid=dad65bfed30c91a1b6ddb18a13a78f78&lat=" + latitude + "&lon=" + longitude
         $.ajax({
@@ -56,9 +57,29 @@ $("#submitCity").on("click", function () {
             localStorage.setItem("storedHTML", storedHTML)
         })
 
+        if (sameDay === "Rain"){
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/09d.png");
+            sameIcon.attr("style", "height: 50px; width: 50px");
+        }
+        else if(sameDay === "Clouds"){
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/03d.png");
+            sameIcon.attr("style", "height:50px; width: 50px;");
+        }
+        else if (sameDay === "Clear"){
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/01d.png");
+            sameIcon.attr("style", "height:50px; width: 50px;");
+        
+        }else if(sameDay === "Drizzle"){
+            var sameIcon = $('<img').attr("src", "https://openweathermap.org/img/wn/10d.png");
+            sameIcon.attr("style", "height:50px; width: 50px;");
+        }
+        else if(sameDay === "Snow"){
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/13d.png");
+            sameIcon.attr("style", "height:50px; width: 50px;");
+        }
         var dayForecast = $("<div class='card shadow-lg p-3 mb-5 bg-white rounded' id=\"dayCast\" >");
 
-        dayForecast.append(city1, time ,wind1, humid1, temp1, UV1,);
+        dayForecast.append(city1,time, sameIcon ,wind1, humid1, temp1, UV1,);
         $("#items").html(dayForecast)
 
     });
@@ -112,10 +133,7 @@ $("#submitCity").on("click", function () {
             }
 
             //append items to.......
-            fiveDayDiv.append(h5date);
-            fiveDayDiv.append(icon);
-            fiveDayDiv.append(pTemp);
-            fiveDayDiv.append(pHum);
+            fiveDayDiv.append(h5date, icon, pTemp, pHum);
             $("#forecast").append(fiveDayDiv);
         }
     });
