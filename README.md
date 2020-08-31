@@ -1,5 +1,13 @@
-# Weather
 
 
-Homework 6 was probably the hardest assignment thatI feel I have done. The point was to make a Weather Dashboard that gives you the actual time weather as well as a 5 day forecast for the dame city that you search. Using API calls from OpenWeather API was the call that was used to get the weather. Every time you search for a city it is suppose to stay saved on to the local storage of the HTML. 
+# Weather Dashboard
+
+## Getting Started
+Get the weather in your local city with this. Using an API call from OpenWeatherAPI you are able to get wind speed, temperature, humidity and UV Index. You are also able to get a 5 day forecast. Just type in the City name and it will all appear dynamically.
+
+## Deployment
 https://icek567.github.io/Weather/
+ 
+### Authors
+Sergio Perez
+
