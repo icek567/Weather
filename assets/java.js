@@ -39,7 +39,7 @@ $("#submitCity").on("click", function () {
         var sameDay = response.weather[0].main;
         
         var city1 = $("<h1>").text( response.name + "  " + setDate );
-        var time = $("<h3>").text(setTime);
+        var time = $("<h3>").text(sameDay + "        " + setTime);
         var wind1 = $("<p>").text("Windspeed: " + response.wind.speed + " MPH");
         var humid1 = $("<p>").text("Humidity: " + response.main.humidity + "%");
         var temp1 =$("<p>").text("Temperature: " + Temperature +  "°F");
@@ -63,11 +63,11 @@ $("#submitCity").on("click", function () {
         }
         else if(sameDay === "Clouds"){
             var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/03d.png");
-            sameIcon.attr("style", "height:50px; width: 50px;");
+            sameIcon.attr("style", "height:100px; width: 100px;");
         }
         else if (sameDay === "Clear"){
             var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/01d.png");
-            sameIcon.attr("style", "height:50px; width: 50px;");
+            sameIcon.attr("style", "height:100px; width: 100px;");
         
         }else if(sameDay === "Drizzle"){
             var sameIcon = $('<img').attr("src", "https://openweathermap.org/img/wn/10d.png");
@@ -77,7 +77,11 @@ $("#submitCity").on("click", function () {
             var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/13d.png");
             sameIcon.attr("style", "height:50px; width: 50px;");
         }
-        var dayForecast = $("<div class='card shadow-lg p-3 mb-5 bg-white rounded' id=\"dayCast\" >");
+        else if(sameDay === "Thunderstorm"){
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/11d.png");
+            sameIcon.attr("style", "height:100px; width: 100px");
+        }
+        var dayForecast = $("<div class='card shadow-lg p-3 mb-5 text-white rounded' id=\"dayCast\" >");
 
         dayForecast.append(city1,time, sameIcon ,wind1, humid1, temp1, UV1,);
         $("#items").html(dayForecast)
@@ -93,7 +97,7 @@ $("#submitCity").on("click", function () {
         // empty div once reloaded
         $("#forecast").empty();
         var results = response.list;
-        $("#title").html("<h1 class=\"mt-3\">5-Day Forecast for " + city + "</h1>");
+        $("#title").html("<h1 class=\"mt-3 text-white\" >5-Day Forecast for " + city + "</h1>");
 
         for (var i = 0; i < results.length; i += 8) {
             // Creating a div

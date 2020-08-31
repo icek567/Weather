@@ -1,20 +1,21 @@
-html{
-    height: 100%;
-}
-/* 
+
 body{
-    background-image: linear-gradient(  #C04848,#480048);
-} */
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
 
 #dayCast{
-    color: rgb(2, 0, 138);
-    width: 500px;
-    /* background-image: linear-gradient(  #C04848,#480048); */
-} 
+    width: 700px;
+    background: #667db6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    } 
 
 .UV{
     text-align: left;
-    width: 30%;
+    width: 20%;
 }
 
 .title{
