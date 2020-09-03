@@ -24,7 +24,7 @@ $("#submitCity").on("click", function () {
     var city = $(".input").val();
     var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=dc3b26ac9a18483a9000884d9ebbbe65"
     var setDate = moment().format('L');
-    var setTime= new Date().toLocaleTimeString();
+    var setTime = new Date().toLocaleTimeString();
 
 
     $.ajax({
@@ -85,21 +85,21 @@ $("#submitCity").on("click", function () {
         var dayForecast = $("<div class='card shadow-lg p-3 mb-5 text-white rounded' id=\"dayCast\" >");
 
         dayForecast.append(city1,time, sameIcon ,wind1, humid1, temp1, UV1,);
-        $("#items").html(dayForecast)
+        $("#items").html(dayForecast);
 
-    //     $("#dayCast").change(function(){
-    //         var changeColor = Temperature;
-    //         var color = "linear-gradient(to right, #0f2027, #203a43, #2c5364)"
-    //         if(changeColor > 80 && changeColor <= 110){
-    //             color='red'
-    //         }
-    //         else if (changeColor > 60 && changeColor <= 79){
-    //         color = 'green'
-    //         }
-    //         $('.card').css('background', color)
-    //     });
+        // $("#dayCast").change(function(){
+        //     var changeColor = Temperature;
+        //     var color = "linear-gradient(to right, #0f2027, #203a43, #2c5364)"
+        //     if(changeColor > 80 && changeColor <= 110){
+        //         color='red'
+        //     }
+        //     else if (changeColor > 60 && changeColor <= 79){
+        //     color = 'green'
+        //     }
+        //     $('.card').css('background', color)
+        // });
 
-    // });
+    });
 
 
     var FiveDayweatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=dc3b26ac9a18483a9000884d9ebbbe65"
