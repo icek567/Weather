@@ -1,32 +1,36 @@
-
-// if (localStorage.getItem("searchhistory")) {
-//     searchHistoryArray = JSON.parse(localStorage.getItem("searchhistory"))
-// }
-// else {
-//     searchHistoryArray = []
-// }
-// if (localStorage.getItem("storedHTML")) {
-//     $("#info").html(localStorage.getItem("storedHTML"))
-// }
-
-
-
-// for (i of searchHistoryArray) {
-//     var searchItemDiv = $("<div>").text(i).addClass("searchhistoryitem")
-//     city.append(searchItemDiv)
-// }
+$("#submitCity").on("click", function(event) {
+    event.preventDefault();
+    var city = $(".input").val().trim();
+    var content = $(this).siblings("input").val();
+    var storeContent = [];
+    storeContent.push(content);
+    localStorage.setItem("city", JSON.stringify(storeContent));    
+    getData(city);
+    pageLoad();
+});
 
 
+function pageLoad () {
+    var lastSearch = JSON.parse(localStorage.getItem("city"));
+    var searchDiv = $("<button class='btn btn-outline-primary mt-1 shadow-sm rounded' style='width: 12rem;'>").text(lastSearch);
+    var psearch = $("<div>");
+    psearch.append(searchDiv)
+    $("#searchedCities").prepend(psearch);
+}
+
+$("#searchedCities").on('click', '.btn', function(event){
+    event.preventDefault();
+    console.log($(this).text());
+    getData($(this).text());
+});
 
 
 // ajax calls that will show up on the console also pull the information from OpenWeatherMap
-$("#submitCity").on("click", function () {
-    var city = $(".input").val();
+function getData(city) {
     var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=dc3b26ac9a18483a9000884d9ebbbe65"
     var setDate = moment().format('L');
     var setTime = new Date().toLocaleTimeString();
-
-
+    
     $.ajax({
         url: weatherUrl,
         method: "GET",
@@ -34,7 +38,7 @@ $("#submitCity").on("click", function () {
     }).then(function (response) {
         console.log(weatherUrl);
         console.log(response)
-        $("#current").empty();
+        $("#items").empty();
         var Temperature = Math.round(response.main.temp);
         var sameDay = response.weather[0].main;
         
@@ -58,28 +62,28 @@ $("#submitCity").on("click", function () {
         })
 
         if (sameDay === "Rain"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/09d.png");
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/09d.png");
             sameIcon.attr("style", "height: 50px; width: 50px");
         }
         else if(sameDay === "Clouds"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/03d.png");
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/03d.png");
             sameIcon.attr("style", "height:100px; width: 100px;");
         }
         else if (sameDay === "Clear"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/01d.png");
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/01d.png");
             sameIcon.attr("style", "height:100px; width: 100px;");
         
         }
         else if(sameDay === "Drizzle"){
-            var sameIcon = $('<img').attr("src", "https://openweathermap.org/img/wn/10d.png");
+            var sameIcon = $('<img').attr("src", "https://openweathermap.org/img/w/10d.png");
             sameIcon.attr("style", "height:50px; width: 50px;");
         }
         else if(sameDay === "Snow"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/13d.png");
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/13d.png");
             sameIcon.attr("style", "height:50px; width: 50px;");
         }
         else if(sameDay === "Thunderstorm"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/wn/11d.png");
+            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/11d.png");
             sameIcon.attr("style", "height:100px; width: 100px");
         }
         var dayForecast = $("<div class='card shadow-lg p-3 mb-5 text-white rounded' id=\"dayCast\" >");
@@ -131,22 +135,22 @@ $("#submitCity").on("click", function () {
             var weather = results[i].weather[0].main
 
             if (weather === "Rain") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/wn/09d.png");
+                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/09d.png");
                 icon.attr("style", "height: 40px; width: 40px");
             } else if (weather === "Clouds") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/wn/03d.png");
+                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/03d.png");
                 icon.attr("style", "height: 40px; width: 40px");
             } 
              else if (weather === "Clear") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/wn/01d.png");
+                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/01d.png");
                 icon.attr("style", "height: 40px; width: 40px");
             }
              else if (weather === "Drizzle") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/wn/10d.png");
+                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/10d.png");
                 icon.attr("style", "height: 40px; width: 40px");
             }
              else if (weather === "Snow") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/wn/13d.png");
+                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/13d.png");
                 icon.attr("style", "height: 40px; width: 40px");
             }
 
@@ -154,8 +158,7 @@ $("#submitCity").on("click", function () {
             fiveDayDiv.append(h5date, icon, pTemp, pHum);
             $("#forecast").append(fiveDayDiv);
         }
+
     });
-
-
-});
-
+}
+pageLoad();
