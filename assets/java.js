@@ -40,17 +40,22 @@ function getData(city) {
         console.log(response)
         $("#items").empty();
         var Temperature = Math.round(response.main.temp);
-        var sameDay = response.weather[0].main;
+        var sameDay = response.weather[0].icon;
         
         var city1 = $("<h1>").text( response.name + "  " + setDate );
-        var time = $("<h3>").text(sameDay + "        " + setTime);
+        var time = $("<h3>").text(response.weather[0].main + "        " + setTime);
         var wind1 = $("<p>").text("Windspeed: " + response.wind.speed + " MPH");
         var humid1 = $("<p>").text("Humidity: " + response.main.humidity + "%");
         var temp1 =$("<p>").text("Temperature: " + Temperature +  "°F");
         var longitude = response.coord.lon
         var latitude = response.coord.lat
-        var UV1 = $("<button class=\"UV btn btn-secondary btn-sm\" disabled>");
+        var sameIcon = $ ('<img>').attr("src", "https://openweathermap.org/img/w/" + sameDay + ".png")
+        sameIcon.attr("style", "height: 100px; width: 100px");
 
+
+
+        // code for getting the UV information
+        var UV1 = $("<button class=\"UV btn btn-secondary btn-sm\" disabled>");
         var UVURL = "https://api.openweathermap.org/data/2.5/uvi?appid=dad65bfed30c91a1b6ddb18a13a78f78&lat=" + latitude + "&lon=" + longitude
         $.ajax({
             method: "GET",
@@ -61,34 +66,9 @@ function getData(city) {
             localStorage.setItem("storedHTML", storedHTML)
         })
 
-        if (sameDay === "Rain"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/09d.png");
-            sameIcon.attr("style", "height: 50px; width: 50px");
-        }
-        else if(sameDay === "Clouds"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/03d.png");
-            sameIcon.attr("style", "height:100px; width: 100px;");
-        }
-        else if (sameDay === "Clear"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/01d.png");
-            sameIcon.attr("style", "height:100px; width: 100px;");
-        
-        }
-        else if(sameDay === "Drizzle"){
-            var sameIcon = $('<img').attr("src", "https://openweathermap.org/img/w/10d.png");
-            sameIcon.attr("style", "height:50px; width: 50px;");
-        }
-        else if(sameDay === "Snow"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/13d.png");
-            sameIcon.attr("style", "height:50px; width: 50px;");
-        }
-        else if(sameDay === "Thunderstorm"){
-            var sameIcon = $('<img>').attr("src", "https://openweathermap.org/img/w/11d.png");
-            sameIcon.attr("style", "height:100px; width: 100px");
-        }
-        var dayForecast = $("<div class='card shadow-lg p-3 mb-5 text-white rounded' id=\"dayCast\" >");
+        var dayForecast = $("<div class='card p-3 mb-5 text-white rounded' id=\"dayCast\" >");
 
-        dayForecast.append(city1,time, sameIcon ,wind1, humid1, temp1, UV1,);
+        dayForecast.append(city1, time, sameIcon ,wind1, humid1, temp1, UV1,);
         $("#items").html(dayForecast);
 
         // $("#dayCast").change(function(){
@@ -119,7 +99,7 @@ function getData(city) {
 
         for (var i = 0; i < results.length; i += 8) {
             // Creating a div
-            var fiveDayDiv = $("<div id=\"fiveDay\" class='card shadow-lg text-white bg-dark mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem; margin-right: 5rem;'>");
+            var fiveDayDiv = $("<div id=\"fiveDay\" class='card bg-dark text-white rounded mx-auto mb-10 p-2' style='width: 8.5rem; height: 11rem; margin-right: 5rem;'>");
             
             //Storing the responses date temp and humidity.......
             var date = results[i].dt_txt;
@@ -129,30 +109,12 @@ function getData(city) {
    
             //creating tags with the result items information.....
             var h5date = $("<h5 class='card-title'>").text(setD);
-            var pTemp = $("<p class='card-text'>").text("Temp: " + temp);;
-            var pHum = $("<p class='card-text'>").text("Humidity " + hum);;
+            var pTemp = $("<p class='card-text'>").text("Temp: " + temp + "°F");;
+            var pHum = $("<p class='card-text'>").text("Humidity: " + hum + "%");;
+            var weather = results[i].weather[0].icon;
 
-            var weather = results[i].weather[0].main
-
-            if (weather === "Rain") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/09d.png");
-                icon.attr("style", "height: 40px; width: 40px");
-            } else if (weather === "Clouds") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/03d.png");
-                icon.attr("style", "height: 40px; width: 40px");
-            } 
-             else if (weather === "Clear") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/01d.png");
-                icon.attr("style", "height: 40px; width: 40px");
-            }
-             else if (weather === "Drizzle") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/10d.png");
-                icon.attr("style", "height: 40px; width: 40px");
-            }
-             else if (weather === "Snow") {
-                var icon = $('<img>').attr("src", "https://openweathermap.org/img/w/13d.png");
-                icon.attr("style", "height: 40px; width: 40px");
-            }
+            var icon = $ ('<img>').attr("src", "https://openweathermap.org/img/w/" + weather + ".png")
+            icon.attr("style", "height: 40px; width: 40px;");
 
             //append items to.......
             fiveDayDiv.append(h5date, icon, pTemp, pHum);
