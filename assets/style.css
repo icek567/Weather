@@ -28,3 +28,8 @@ body{
 #fiveDay{
     margin-bottom: 50px;
 } 
+
+.logo{
+    margin-bottom: 10px;
+    border-radius: 50px;
+}
