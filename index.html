@@ -35,15 +35,15 @@
           <label for="city-input">
             <h3>Searh Weather:</h3>
           </label><br>
-          <input type="text" name="city" id="info" class="input" placeholder="Enter City">
+          <input type="text" name="city" id="info" class="input" required placeholder="Enter City">
           <!-- Call AJAX on click button -->
-          <button id="submitCity" class="btn btn-primary">search</button>
+          <button id="submitCity" type="submit" value="Submit" name="search" class="btn btn-primary">search</button>
           <!-- Search History spacing-->
           <form id="searchedCities" class="mt-1">
             <!---------------------- Search history gets added here  --------------------------------->
           </form>
         </nav>
-        <img class="logo float-right" src="assets/img/Darklogo.png" alt="logo" width="150" height="150" />
+        <!-- <img class="logo float-right" src="assets/img/Darklogo.png" alt="logo" width="150" height="150" /> -->
       </div>
       <div class="col-lg-8 col-sm-6 float-right">
         <div>
@@ -53,13 +53,14 @@
         <div class="">
           <div id="title"></div>
           <div id="forecast" class="row">
-            <img class="logo float-right" src="assets/img/Darklogo.png" alt="logo" width="150" height="150" />
+            <!-- <img class="logo float-right" src="assets/img/Darklogo.png" alt="logo" width="150" height="150" /> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <img class="logo float-right" src="assets/img/Darklogo.png" alt="logo" width="150" height="150" />
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
