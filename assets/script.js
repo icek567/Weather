@@ -4,9 +4,15 @@ $("#submitCity").on("click", function(event) {
     var content = $(this).siblings("input").val();
     var storeContent = [];
     storeContent.push(content);
-    localStorage.setItem("city", JSON.stringify(storeContent));    
+    localStorage.setItem("city", JSON.stringify(storeContent)); 
+
+    if (city == "" || city == null ){
+        alert("Please add City")
+        return false
+    }
     getData(city);
     pageLoad();
+
 });
 
 
@@ -17,6 +23,7 @@ function pageLoad () {
     psearch.append(searchDiv)
     $("#searchedCities").prepend(psearch);
 }
+
 
 $("#searchedCities").on('click', '.btn', function(event){
     event.preventDefault();
